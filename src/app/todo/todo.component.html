@@ -1,18 +1,4 @@
-<mat-card>
-  <form>
-    <mat-card-header>
-      <mat-card-title>Todo hinzufügen</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-form-field>
-        <mat-label>
-          Name
-        </mat-label>
-        <input matInput>
-      </mat-form-field>
-    </mat-card-content>
-  </form>
-</mat-card>
+<app-todo-add [currentMaxId]="items.length" (added)="onAdd($event)"></app-todo-add>
 
 <mat-card>
   <mat-card-header>

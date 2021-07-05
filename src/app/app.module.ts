@@ -16,13 +16,15 @@ import {TodosPipe} from "./todo/todo.pipe";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
+import { TodoAddComponent } from './todo-add/todo-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     TodoComponent,
-    TodosPipe
+    TodosPipe,
+    TodoAddComponent
   ],
   imports: [
     BrowserModule,

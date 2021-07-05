@@ -1,0 +1,18 @@
+<mat-card>
+  <!--  durch template variable zugriff auf element, ngForm ist angular type für html <form> -->
+  <form novalidate #myFormDirective="ngForm" [formGroup]="newTodoForm" (ngSubmit)="onAdd(myFormDirective)">
+    <mat-card-header>
+      <mat-card-title>Todo hinzufügen</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>
+          Name
+        </mat-label>
+        <input formControlName="description" placeholder="Neues Todo eingeben" matInput>
+        <mat-error *ngIf="newTodoForm.get('description')?.hasError('required')">Dies ist ein Pflichtfeld</mat-error>
+      </mat-form-field>
+      <button mat-button type="submit">Add</button>
+    </mat-card-content>
+  </form>
+</mat-card>
