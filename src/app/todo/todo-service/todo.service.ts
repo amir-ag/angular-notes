@@ -6,11 +6,12 @@ import {catchError, tap} from "rxjs/operators";
 
 @Injectable()
 export class TodoService {
+
+  public items: TodoItem[] = []
+
   constructor(private http: HttpClient, private snackbar: MatSnackBar) {
     this.load()
   }
-
-  public items: TodoItem[] = []
 
   public add(description: string) {
     this.items.push({
