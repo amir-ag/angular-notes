@@ -1,6 +1,7 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {TodoItem} from "../todo/todo.types";
+import {TodoItem} from "../todo.types";
 import {FormControl, FormGroup, FormGroupDirective, Validators} from "@angular/forms";
+import {TodoService} from "../todo-service/todo.service";
 
 @Component({
   selector: 'app-todo-add',
@@ -15,7 +16,7 @@ export class TodoAddComponent {
 
   public newTodoForm: FormGroup;
 
-  constructor() {
+  constructor(private todoservice: TodoService) {
     this.newTodoForm = new FormGroup({
       description: new FormControl(null, Validators.required)
     })
@@ -23,11 +24,9 @@ export class TodoAddComponent {
 
   public onAdd(form: FormGroupDirective): void {
     if (this.newTodoForm.valid && this.newTodoForm.dirty) {
-      this.added.emit({
-        id: this.currentMaxId + 1,
-        description: this.newTodoForm.get('description')?.value,
-        checked: false
-      })
+      this.todoservice.add(
+        this.newTodoForm.get('description')?.value,
+      )
       form.resetForm();
       this.newTodoForm.reset();
       this.newTodoForm.markAsUntouched();

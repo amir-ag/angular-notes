@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {TodoItem} from "./todo.types";
-import {TodoService} from "../todo.service";
+import {TodoService} from "./todo-service/todo.service";
 
 @Component({
   selector: 'app-todo',
@@ -8,21 +8,10 @@ import {TodoService} from "../todo.service";
   styleUrls:['./todo.component.scss']
 })
 
-export class TodoComponent implements OnInit{
-
-  public items: TodoItem[] = [];
-
+export class TodoComponent {
   constructor(private todoService: TodoService) {}
 
-  onAdd(newTodo: TodoItem): void {
-    this.items.push(newTodo)
+  get items(): TodoItem[] {
+    return this.todoService.items;
   }
-
-  ngOnInit(): void {
-    this.todoService.load().subscribe((todos) => {
-      this.items = todos;
-    })
-  }
-
-
 }
